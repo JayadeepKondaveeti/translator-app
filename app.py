@@ -10,23 +10,27 @@ def home():
     translated = ""
 
     if request.method == "POST":
+
         text = request.form["text"]
-        target = request.form["language"]
+        target_language = request.form["language"]
 
         url = "https://api.mymemory.translated.net/get"
 
         params = {
             "q": text,
-            "langpair": "en|" + target
+            "langpair": f"en|{target_language}"
         }
 
-        response = requests.get(url, params=params)
-        data = response.json()
-
-        translated = data["responseData"]["translatedText"]
+        try:
+            response = requests.get(url, params=params)
+            data = response.json()
+            translated = data["responseData"]["translatedText"]
+        except:
+            translated = "Translation failed. Please try again."
 
     return render_template("index.html", translated=translated)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
