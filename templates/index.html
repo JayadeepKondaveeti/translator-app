@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Translator Dashboard</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:0;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+width:550px;
+text-align:center;
+}
+
+h1{
+margin-bottom:20px;
+color:#333;
+}
+
+textarea{
+width:100%;
+height:120px;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:15px;
+resize:none;
+}
+
+select{
+width:100%;
+padding:12px;
+margin-top:15px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+margin-top:20px;
+background:#667eea;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#5563d6;
+}
+
+.result{
+margin-top:20px;
+background:#f4f6ff;
+padding:15px;
+border-radius:8px;
+border-left:5px solid #667eea;
+text-align:left;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌍 AI Multi-Language Translator</h1>
+
+<form method="POST">
+
+<textarea name="text" placeholder="Enter English text">{{ request.form.text }}</textarea>
+
+<select name="language">
+
+<option value="tel_Telu">Telugu</option>
+<option value="hin_Deva">Hindi</option>
+<option value="tam_Taml">Tamil</option>
+<option value="fra_Latn">French</option>
+<option value="spa_Latn">Spanish</option>
+<option value="deu_Latn">German</option>
+<option value="rus_Cyrl">Russian</option>
+<option value="zho_Hans">Chinese</option>
+<option value="jpn_Jpan">Japanese</option>
+<option value="kor_Hang">Korean</option>
+
+</select>
+
+<button type="submit">Translate</button>
+
+</form>
+
+{% if translated %}
+
+<div class="result">
+
+<h3>Translated Text</h3>
+
+<p>{{ translated }}</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
